@@ -10,7 +10,6 @@ struct cartItem {
 	int serialNo;
 	int price;
 
-	cartItem() = default;
 	cartItem(const string& name,
 			const string& serialStr,
 			const string& priceStr)

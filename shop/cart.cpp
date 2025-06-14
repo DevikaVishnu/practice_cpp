@@ -36,12 +36,7 @@ int Cart::readFromCSV() {
         if(!getline(ss, serialStr, ',')) continue;
         if(!getline(ss, priceStr, ',')) continue;
         
-        cartItem item;
-        item.name = name;
-        item.serialNo = stoi(serialStr);
-        item.price = stoi(priceStr);
-        items.push_back(item);
-        //items.emplace_back(name, serialStr, priceStr);
+        items.emplace_back(name, serialStr, priceStr);
     }
 
     file.close();
