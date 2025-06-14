@@ -29,18 +29,21 @@ int Cart::readFromCSV() {
     }
     string line;
     while (getline(file, line)) {
-        stringstream ss(line);
-        string name, serialStr, priceStr;
-
-        if(!getline(ss, name, ',')) continue;
-        if(!getline(ss, serialStr, ',')) continue;
-        if(!getline(ss, priceStr, ',')) continue;
-        
-        items.emplace_back(name, serialStr, priceStr);
+        items.push_back(parseLine(line));
     }
 
     file.close();
     return 0;
+}
+
+cartItem Cart::parseLine(const string& line) {
+    stringstream ss(line);
+    string name, serialStr, priceStr;
+
+    getline(ss, name, ',');
+    getline(ss, serialStr, ',');
+    getline(ss, priceStr, ',');
+    return cartItem{name, serialStr, priceStr};
 }
 
 void Cart::addItem(cartItem newItem) {

@@ -29,5 +29,6 @@ class Cart {
 	private:
 		vector<cartItem> items;
 		string csvFile;
+		cartItem parseLine(const string&);
 };
 
