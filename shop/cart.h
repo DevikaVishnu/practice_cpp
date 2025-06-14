@@ -3,21 +3,32 @@
 
 using std::string;
 using std::vector;
+using std::stoi;
 
 struct cartItem {
-	std::string name;
+	string name;
 	int serialNo;
 	int price;
+
+	cartItem() = default;
+	cartItem(const string& name,
+			const string& serialStr,
+			const string& priceStr)
+			: name(name),
+			serialNo(stoi(serialStr)),
+			price(stoi(priceStr)) {};
 };
 
 class Cart {
 	public:
-		Cart();
+		Cart(string&);
+		int readFromCSV();
 		void addItem(cartItem);
 		void deleteItem(int);
 		void displayCart() const;
-		~Cart();
+		~Cart() = default;
 	private:
 		vector<cartItem> items;
+		string csvFile;
 };
 
